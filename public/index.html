@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>企业岗位经验 Skill 生成平台</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- ============ 顶部导航 ============ -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="#/" class="brand">
+        <span class="brand-name">Skill 生成平台</span>
+        <span class="brand-sub">企业岗位经验 → AI 员工能力</span>
+      </a>
+      <nav class="nav">
+        <a href="#/" class="nav-link" data-nav="home">创建 Skill</a>
+        <a href="#/library" class="nav-link" data-nav="library">Skill 资产库</a>
+        <button class="btn-ghost btn-sm" id="btn-settings" title="LLM 设置">⚙ LLM 设置</button>
+        <span class="llm-badge" id="llm-badge" title="点击查看详情">检测中…</span>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============ 主内容区（单页应用，按 hash 路由渲染） ============ -->
+  <main id="app" class="container"></main>
+
+  <!-- ============ 全局 Toast 提示 ============ -->
+  <div id="toast" class="toast"></div>
+
+  <!-- ============ LLM 设置弹窗 ============ -->
+  <div id="settings-modal" class="modal-mask hidden">
+    <div class="modal">
+      <div class="modal-head">
+        <h3>LLM 接入设置</h3>
+        <button class="modal-close" id="btn-close-settings">×</button>
+      </div>
+      <div class="modal-body">
+        <p class="muted">
+          平台通过<strong>真实大模型</strong>生成 Skill 与执行分析报告，
+          <strong>必须配置 API Key 才能使用</strong>，未配置时相关功能不可用。
+        </p>
+        <label class="field-label" for="select-model">模型版本</label>
+        <select id="select-model" class="input"></select>
+        <p class="muted small">
+          可选：v4pro（旗舰）、flash（快速）、chat（通用），保存后立即生效。
+        </p>
+        <label class="field-label" for="input-api-key">API Key</label>
+        <input type="password" id="input-api-key" class="input" placeholder="sk-xxxxxxxxxxxxxxxx"
+               autocomplete="off">
+        <p class="muted small">
+          获取方式：登录您的 LLM 服务提供方控制台创建 Key。Key 仅保存在本机 <code>server/data/config.json</code>，不会上传到任何第三方。
+        </p>
+        <div class="modal-status" id="settings-status"></div>
+      </div>
+      <div class="modal-foot">
+        <button class="btn-primary" id="btn-save-key">保存并生效</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/markdown.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
